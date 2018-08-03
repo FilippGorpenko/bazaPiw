@@ -1,4 +1,4 @@
-package com.example.piwo.web.boundary;
+package com.example.beer.web.boundary;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;

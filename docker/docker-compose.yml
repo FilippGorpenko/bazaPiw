@@ -2,6 +2,6 @@ cf-postgres-piwo:
   build: postgres
   hostname: "postgres"
   environment:
-      - PGDATA=/var/lib/postgresql/data/piwo
+      - PGDATA=/var/lib/postgresql/data/beer
   ports:
     - "5434:5434"

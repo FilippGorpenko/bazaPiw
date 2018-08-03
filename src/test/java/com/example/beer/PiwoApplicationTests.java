@@ -1,4 +1,4 @@
-package com.example.piwo;
+package com.example.beer;
 
 import org.junit.Ignore;
 import org.junit.Test;

@@ -1,12 +1,12 @@
-package com.example.piwo;
+package com.example.beer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PiwoApplication {
+public class BeerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PiwoApplication.class, args);
+		SpringApplication.run(BeerApplication.class, args);
 	}
 }
