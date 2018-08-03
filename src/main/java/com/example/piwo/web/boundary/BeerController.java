@@ -1,5 +1,6 @@
 package com.example.piwo.web.boundary;
 
+import com.example.piwo.api.BeerList;
 import com.example.piwo.api.BeerResponse;
 import com.example.piwo.service.PiwoApiService;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,7 @@ public class BeerController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> getById() {
+    public ResponseEntity<BeerList> getById() {
         return piwoApiService.getSingleBear();
     }
 }
