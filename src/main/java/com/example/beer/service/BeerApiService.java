@@ -32,17 +32,20 @@ public class BeerApiService {
 
         String beers = restTemplate.getForEntity(beerProperties.getApiUrl(), String.class).getBody();
 
-        CollectionType javaType = objectMapper.getTypeFactory()
-                .constructCollectionType(List.class, BeerResponse.class);
         List<BeerResponse> asList;
+
         try {
+
+            CollectionType javaType = objectMapper.getTypeFactory()
+                    .constructCollectionType(List.class, BeerResponse.class);
+
             asList = objectMapper.readValue(beers, javaType);
 
-            List<Beer> beerTosave = asList.stream()
-                    .map(this::beerResponceToBeer)
+            List<Beer> beerToSave = asList.stream()
+                    .map(this::beerResponseToBeer)
                     .collect(Collectors.toList());
 
-            beerTosave.forEach(beerRepository::save);
+            beerToSave.forEach(beerRepository::save);
 
             return asList;
         } catch (IOException e) {
@@ -51,7 +54,7 @@ public class BeerApiService {
         return Collections.emptyList();
     }
 
-    private Beer beerResponceToBeer(BeerResponse beerResponse) {
+    private Beer beerResponseToBeer(BeerResponse beerResponse) {
         return Beer.builder()
                 .id(beerResponse.getId())
                 .name(beerResponse.getName())
