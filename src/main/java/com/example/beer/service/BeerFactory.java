@@ -9,7 +9,6 @@ import java.util.Arrays;
 
 public class BeerFactory {
 
-
     public static Beer beerResponseToBeer(BeerResponse beerResponse) {
         return Beer.builder()
                 .id(beerResponse.getId())

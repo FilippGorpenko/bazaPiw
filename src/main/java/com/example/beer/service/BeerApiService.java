@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestOperations;
 
@@ -22,6 +23,7 @@ import static com.example.beer.service.BeerFactory.beerResponseToBeer;
 
 @AllArgsConstructor
 @Service
+@Transactional
 public class BeerApiService {
 
     private final RestOperations restTemplate;
@@ -29,31 +31,28 @@ public class BeerApiService {
     private final BeerProperties beerProperties;
     private final BeerRepository beerRepository;
 
-    @Transactional
-    public List<BeerResponse> getAllBeers() {
-
-        String beers = restTemplate.getForEntity(beerProperties.getApiUrl(), String.class).getBody();
-
-        List<BeerResponse> asList;
-
+    @Scheduled(cron = "0 0 * ? * * *")
+    public void importBeersFromPunkapi() {
         try {
+            String beers = restTemplate.getForEntity(beerProperties.getApiUrl(), String.class).getBody();
 
-            CollectionType javaType = objectMapper.getTypeFactory()
-                    .constructCollectionType(List.class, BeerResponse.class);
-
-            asList = objectMapper.readValue(beers, javaType);
+            List<BeerResponse> asList = parseBeers(beers);
 
             List<Beer> beerToSave = asList.stream()
                     .map(BeerFactory::beerResponseToBeer)
                     .collect(Collectors.toList());
 
             beerToSave.forEach(beerRepository::save);
-
-            return asList;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return Collections.emptyList();
+    }
+
+    private List<BeerResponse> parseBeers(String beers) throws IOException {
+        CollectionType javaType = objectMapper.getTypeFactory()
+                .constructCollectionType(List.class, BeerResponse.class);
+
+        return objectMapper.readValue(beers, javaType);
     }
 
 
