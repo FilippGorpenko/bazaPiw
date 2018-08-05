@@ -18,6 +18,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.example.beer.service.BeerFactory.beerResponseToBeer;
+
 @AllArgsConstructor
 @Service
 public class BeerApiService {
@@ -42,7 +44,7 @@ public class BeerApiService {
             asList = objectMapper.readValue(beers, javaType);
 
             List<Beer> beerToSave = asList.stream()
-                    .map(this::beerResponseToBeer)
+                    .map(BeerFactory::beerResponseToBeer)
                     .collect(Collectors.toList());
 
             beerToSave.forEach(beerRepository::save);
@@ -54,18 +56,5 @@ public class BeerApiService {
         return Collections.emptyList();
     }
 
-    private Beer beerResponseToBeer(BeerResponse beerResponse) {
-        return Beer.builder()
-                .id(beerResponse.getId())
-                .name(beerResponse.getName())
-                .tagline(beerResponse.getTagline())
-                .firstBrewed(beerResponse.getFirst_brewed())
-                .imageUrl(beerResponse.getImage_url())
-                .ibu(beerResponse.getIbu())
-                .description(beerResponse.getDescription())
-                .foodPairing(Arrays.toString(beerResponse.getFood_pairing()))
-                .build();
-
-    }
 
 }
