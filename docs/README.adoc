@@ -10,7 +10,8 @@
 [source%autofit,bash]
 ----
 $ cd docker
-$ docker-compose -d up
+$ docker-compose build
+$ docker-compose up
 ----
 
 == Uruchamianie aplikacji
