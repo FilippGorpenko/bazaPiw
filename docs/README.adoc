@@ -1,0 +1,7 @@
+= BeerService - API
+
+
+== Uwierzytelnianie
+* Basic Auth - dane unikalne.
+* Dostępne loginy:
+** admin - admin
