@@ -14,7 +14,7 @@ import java.util.List;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 
 @RestController
-@RequestMapping(value = "/beers", produces = APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(produces = APPLICATION_JSON_UTF8_VALUE)
 public class BeerController {
 
     private final BeerService beerService;
@@ -23,17 +23,16 @@ public class BeerController {
         this.beerService = beerService;
     }
 
-    @GetMapping(value = "/foodpairings/search/{phrase} ")
+    @GetMapping(value = "/foodpairings/search/{phrase}")
     @ResponseStatus(HttpStatus.OK)
-    public List<BeerSnapshot> getById(@PathVariable("phrase") String phrase) {
+    public List<BeerSnapshot> find(@PathVariable("phrase") String phrase) {
         return beerService.find(phrase);
     }
 
-    @PostMapping(consumes = APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/beers")
     @ResponseStatus(HttpStatus.CREATED)
     public Long create(@Valid @RequestBody @NotNull BeerCreationRequest beerCreationRequest) {
         return beerService.create(beerCreationRequest);
     }
-
 
 }

@@ -2,24 +2,19 @@ package com.example.beer.service;
 
 import com.example.beer.Repository.BeerRepository;
 import com.example.beer.api.BeerResponse;
-import com.example.beer.infrastructure.BeerProperties;
+import com.example.beer.infrastructure.configuration.BeerProperties;
 import com.example.beer.mapping.Beer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestOperations;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static com.example.beer.service.BeerFactory.beerResponseToBeer;
 
 @AllArgsConstructor
 @Service

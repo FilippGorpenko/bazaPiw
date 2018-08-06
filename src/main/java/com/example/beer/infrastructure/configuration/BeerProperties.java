@@ -1,4 +1,4 @@
-package com.example.beer.infrastructure;
+package com.example.beer.infrastructure.configuration;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

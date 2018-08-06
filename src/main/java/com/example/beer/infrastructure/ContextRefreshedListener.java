@@ -16,7 +16,8 @@ public class ContextRefreshedListener implements ApplicationListener<ContextRefr
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        log.debug("Start import");
+        log.trace("Start import");
         beerApiService.importBeersFromPunkapi();
+        log.info("End import");
     }
 }
