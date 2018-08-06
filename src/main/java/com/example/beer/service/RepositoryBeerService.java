@@ -1,6 +1,6 @@
 package com.example.beer.service;
 
-import com.example.beer.Repository.BeerRepository;
+import com.example.beer.repository.BeerRepository;
 import com.example.beer.api.BeerCreationRequest;
 import com.example.beer.api.BeerService;
 import com.example.beer.api.BeerSnapshot;
@@ -20,7 +20,6 @@ public class RepositoryBeerService implements BeerService {
 
     private final BeerRepository beerRepository;
 
-
     @Override
     public Long create(BeerCreationRequest beerCreationRequest) {
         log.trace("Creating beer {request: {}}", beerCreationRequest);
@@ -31,8 +30,10 @@ public class RepositoryBeerService implements BeerService {
 
     @Override
     public List<BeerSnapshot> find(String query) {
+        log.trace("Getting beers {query: {}}", query);
         Specification<Beer> specification = Specification.where(createFoodPairingFilter(query));
         List<Beer> beers = beerRepository.findAll(specification);
+        log.trace("Got beers { size: {}}", beers.size());
         return beers.stream()
                 .map(BeerFactory::beerToBeerSnapshot)
                 .collect(Collectors.toList());

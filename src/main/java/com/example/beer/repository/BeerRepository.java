@@ -1,4 +1,4 @@
-package com.example.beer.Repository;
+package com.example.beer.repository;
 
 import com.example.beer.mapping.Beer;
 import org.springframework.data.jpa.repository.JpaRepository;
