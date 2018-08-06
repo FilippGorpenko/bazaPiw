@@ -13,7 +13,7 @@ $ cd docker
 $ docker-compose -d up
 ----
 
-== Uruchamianie bazy danych
+== Uruchamianie aplikacji
 [source%autofit,bash]
 ----
 $ mvn spring-boot:run
