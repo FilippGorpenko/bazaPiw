@@ -1,4 +1,4 @@
-CREATE TABLE cityfit_trainer.beer
+CREATE TABLE public.beer
 (
   id           BIGSERIAL              NOT NULL,
   name         CHARACTER VARYING(255) NOT NULL,
@@ -13,5 +13,5 @@ CREATE TABLE cityfit_trainer.beer
 WITH (
 OIDS = FALSE
 );
-ALTER TABLE cityfit_trainer.beer
+ALTER TABLE public.beer
   OWNER TO crm_role;

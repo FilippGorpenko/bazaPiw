@@ -4,4 +4,4 @@ cf-postgres-piwo:
   environment:
       - PGDATA=/var/lib/postgresql/data/beer
   ports:
-    - "5434:5434"
+    - "5432:5432"

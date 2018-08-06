@@ -5,3 +5,16 @@
 * Basic Auth - dane unikalne.
 * Dostępne loginy:
 ** admin - admin
+
+== Uruchamianie bazy danych
+[source%autofit,bash]
+----
+$ cd docker
+$ docker-compose -d up
+----
+
+== Uruchamianie bazy danych
+[source%autofit,bash]
+----
+$ mvn spring-boot:run
+----
