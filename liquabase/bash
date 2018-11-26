@@ -1,0 +1,1 @@
+-e liquibase:update -P ${1:-dev}
